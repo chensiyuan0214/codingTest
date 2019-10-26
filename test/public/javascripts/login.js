@@ -1,76 +1,87 @@
 'use strict'
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://127.0.0.1/mongoose_test",{useMongoClient:true});
+mongoose.connect("mongodb://127.0.0.1/test",{ useNewUrlParser: true } );
 mongoose.connection.once("open",function () {
     console.log("数据库连接成功~~~");
 });
 
+//将mongoose.Schema 赋值给一个变量
+var Schema = mongoose.Schema;
+
+//创建Schema（模式）对象
+var userModel = new Schema({
+
+    username:String,
+    password:String
+
+});
+
+var userModel = mongoose.model("users" , userModel);
 
 
 
 var attempt = 3; // Variable to count number of attempts.
 // Below function Executes on click of login button.
-let user =new Array();
-window.localStorage.setItem('textValues', JSON.stringify(user));
-var Person = function (username, password) {
-  this.username = username;
-  this.password = password;
 
-  this.toString = function () {
-    return ["Hi ! I'm ", this.username, " ", this.password].join("");
-  };
-};
 function register() {
-  var username = document.getElementById("exampleInputEmail2").value;
-  var password = document.getElementById("exampleInputPassword2").value;
-  var p = new Person(username, password);
-  alert(p);
-  user = window.localStorage.getItem('textValues');
-  alert(window.localStorage.getItem('textValues'));
-  alert(user);
-  alert("最起码进来了");
-  for(let i = 2; i < user.length; i++) {
-    alert(user[i].username);
-    if(user[i].username == username){
-        alert("Username is already existed");
-        return false;
-    }
-  }
-  user.push(p);
-  alert("users"+user);
-  window.localStorage.setItem('textValues', JSON.stringify(user));
-  alert(user.length);
+      var username = document.getElementById("exampleInputEmail2").value;
+      var password = document.getElementById("exampleInputPassword2").value;
+
+      var result = userModel.findOne({username:username},function (err , docs) {
+          if(!err){
+              console.log("did find the users");
+          }
+      });
+
+      if(result != null){
+          alert("Username Already Exsit");
+      }else{
+          userModel.create({
+              username:username,
+              password:password
+          },function (err) {
+              if(!err){
+                  console.log("Successful inserted");
+              }
+          });
+
+      }
+      return false;
+
 
 }
 
 function validate(){
-  var username = document.getElementById("exampleInputEmail1").value;
-  var password = document.getElementById("exampleInputPassword1").value;
-  alert(users.length);
-  for(let i = 0; i < users.length; i++) {
-      if ( users[i].username == username && password == users[i].password){
-          alert ("Login successfully");
-          var loginLabel = document.getElementById("loginLabel");
-          loginLabel.innerText = "Welcome";
-          // window.location.replace("http://www.w3schools.com");
+
+      //grab username from front end
+      var username = document.getElementById("exampleInputEmail1").value;
+      var password = document.getElementById("exampleInputPassword1").value;
+
+      var res = userModel.findOne({username:username, password:password},function (err , docs) {
+          if(!err){
+              console.log("did find the users");
+          }
+      });
+
+      if(res != null){
+          alert("Successfully logged in");
+          return false;
+      }else{
+          alert("Either user does not exist");
+      }
+      if(attempt > 0){
+          attempt --;// Decrementing by one.
+          alert("You have left "+attempt+" attempt;");
+      }else{
+          alert("You have no attempts left");
+      }
+      // Disabling fields after 3 attempts.
+      if( attempt == 0){
+          document.getElementById("username").disabled = true;
+          document.getElementById("password").disabled = true;
+          document.getElementById("submit").disabled = true;
           return false;
       }
-
-
-  }
-    if(attempt > 0){
-        attempt --;// Decrementing by one.
-        alert("You have left "+attempt+" attempt;");
-    }else{
-      alert("You have no attempts left");
-    }
-    // Disabling fields after 3 attempts.
-    if( attempt == 0){
-        document.getElementById("username").disabled = true;
-        document.getElementById("password").disabled = true;
-        document.getElementById("submit").disabled = true;
-        return false;
-    }
 
 
 }
