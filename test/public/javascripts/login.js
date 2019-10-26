@@ -1,7 +1,6 @@
 'use strict'
 var attempt = 3; // Variable to count number of attempts.
 // Below function Executes on click of login button.
-var loginButton = document.getElementById("loginButton");
 var users = [];
 
 function register() {
@@ -23,10 +22,10 @@ function validate(){
   var username = document.getElementById("exampleInputEmail1").value;
   var password = document.getElementById("exampleInputPassword1").value;
   for(let i = 0; i < users.length; i++) {
-
+      alert(users[i].username);
       if ( users[i].username == username && password == users[i].password){
           alert ("Login successfully");
-          window.location.replace("http://www.w3schools.com");
+          window.location = "pages/_navBar.html"; // Redirecting to other page.
           return false;
       }
 
