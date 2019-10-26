@@ -1,11 +1,13 @@
 'use strict'
 var mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost/my_test', {userNewUrlParser: true});
-var db = mongoose.connection;
+mongoose.connect("mongodb://127.0.0.1/mongoose_test",{useMongoClient:true});
+mongoose.connection.once("open",function () {
+    console.log("数据库连接成功~~~");
+});
 
 
 
-window.localStorage.clear();
+
 var attempt = 3; // Variable to count number of attempts.
 // Below function Executes on click of login button.
 let user =new Array();
