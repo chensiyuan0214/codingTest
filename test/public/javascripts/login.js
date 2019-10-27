@@ -1,9 +1,4 @@
 'use strict'
-var mongoose = require("mongoose");
-mongoose.connect("mongodb://127.0.0.1/test",{ useNewUrlParser: true } );
-mongoose.connection.once("open",function () {
-    console.log("数据库连接成功~~~");
-});
 
 //将mongoose.Schema 赋值给一个变量
 var Schema = mongoose.Schema;

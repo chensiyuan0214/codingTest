@@ -3,6 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require("mongoose");
+mongoose.connect("mongodb://127.0.0.1/test",{ useNewUrlParser: true } );
+mongoose.connection.once("open",functioniye n () {
+  console.log("数据库连接成功~~~");
+});
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
