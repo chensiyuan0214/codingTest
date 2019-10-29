@@ -42,6 +42,7 @@ app.use(passport.session());
 
 // Connect flash
 app.use(flash());
+app.use(express.static('public'));
 
 // Global variables
 app.use(function(req, res, next) {
