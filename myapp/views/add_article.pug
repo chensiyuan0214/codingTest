@@ -1,0 +1,15 @@
+extends layout
+
+block content
+        h1 qunimabi
+        form(method='POST', action='/articles/add')
+                #form-group
+                        label Title:
+                        input.form-control(name='title', type='text')
+                #form-group
+                        label Author:
+                        input.form_control(name='author', type = 'test')
+                #form-group
+                        label Body:
+                        textarea.form_control(name='body')
+                input.btn.btn-primary(type='submit', value= 'Submit')

@@ -1,0 +1,240 @@
+doctype html
+html(lang='zh-CN')
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1,user-scalable=no')
+        title
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css')
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js')
+        style(type='text/css').
+            img{
+                width: 100%;
+            }
+            .damu-thumbnail img{
+                width: auto;
+            }
+            .damu-threeC{
+                margin-top:50px ;
+            }
+            .damu-hr{
+                margin: 50px auto;
+            }
+            .damu-hr > hr{
+                border:1px solid deeppink;
+            }
+            .damu-carousel{
+                margin-top: 50px;
+            }
+            .damu-carousel,.damu-carousel  .item{
+                height: 500px;
+                overflow: hidden;
+            }
+            .carousel-caption{
+                bottom: 50%;
+            }
+            @media only screen and (max-width: 768px) {
+                .carousel-caption{
+                    bottom: 5%;
+                }
+                .damu-carousel,.damu-carousel  .item{
+                    height: 200px;
+                }
+            }
+    body
+        // navbar
+        nav.navbar.navbar-inverse.navbar-fixed-top
+            .container
+                .navbar-header
+                    button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1', aria-expanded='false')
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand(href='#') European Champion League
+                #bs-example-navbar-collapse-1.collapse.navbar-collapse
+                    ul.nav.navbar-nav
+                        li.active
+                            a(href='#')
+                                | Home
+                                span.sr-only (current)
+                        li
+                            a(href='#') About
+                        li.dropdown
+                            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                                | Teams
+                                span.caret
+                            ul#damu-nav.dropdown-menu
+                                li
+                                    a(href='#chrome') Bayern Munich
+                                li
+                                    a(href='#firefox') Real Madrid
+                                li
+                                    a(href='#safari') Barcelona
+                                li
+                                    a(href='#opera') Liverpool
+                                li
+                                    a(href='#ie') Dortmound
+                        li
+                            a#loginLabel(href='javascript:;', data-target='#myModal', data-toggle='modal') Login
+        // carousel
+        #carousel-example-generic.carousel.slide.damu-carousel(data-ride='carousel', data-interval='1000')
+            ol.carousel-indicators
+                li.active(data-target='#carousel-example-generic', data-slide-to='0')
+                li(data-target='#carousel-example-generic', data-slide-to='1')
+                li(data-target='#carousel-example-generic', data-slide-to='2')
+            // Wrapper for slides
+            .carousel-inner(role='listbox')
+                .item.active
+                    img(src='images/pages1.jpg')
+                    .carousel-caption
+                .item
+                    img(src='images/pages2.jpg')
+                    .carousel-caption
+                .item
+                    img(src='images/pages3.jpg')
+                    .carousel-caption
+            // Controls
+            a.left.carousel-control(href='#carousel-example-generic', role='button', data-slide='prev')
+                span.glyphicon.glyphicon-chevron-left(aria-hidden='true')
+                span.sr-only Previous
+            a.right.carousel-control(href='#carousel-example-generic', role='button', data-slide='next')
+                span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
+                span.sr-only Next
+        // content
+        .container.damu-threeC
+            .row
+                .col-md-4.damu-thumbnail.text-center
+                    img(src='images/manchesterlogo.png')
+                    .caption
+                        h3 Manchester United
+                        p
+                            | This club has 500 millions fans, which is way more than the population of Britain.
+                        p
+                            a.btn.btn-default(href='#', role='button') Button
+                .col-md-4.damu-thumbnail.text-center
+                    img(src='images/bayernlogo.png')
+                    .caption
+                        h3 Bayern Munich
+                        p
+                            | The most successful football club in Germany. One of the most competent team in the UCL this year
+                        p
+                            a.btn.btn-default(href='#', role='button') Button
+                .col-md-4.damu-thumbnail.text-center
+                    img(src='images/bacelogo.jpg')
+                    .caption
+                        h3 Barcelona FC
+                        p
+                            | One of the most successful club in Laliga. Messi has been playing for Barcelona for more than ten years
+                        p
+                            a.btn.btn-default(href='#', role='button') Button
+        // line
+        .container.damu-hr
+            hr
+        // Tab pages
+        #damu-tab.container
+            ul#damu-list.nav.nav-tabs(role='tablist')
+                li.active(role='presentation')
+                    a(href='#chrome', aria-controls='chrome', role='tab', data-toggle='tab') Bayern
+                li(role='presentation')
+                    a(href='#opera', aria-controls='opera', role='tab', data-toggle='tab') Barcelona
+                li(role='presentation')
+                    a(href='#ie', aria-controls='ie', role='tab', data-toggle='tab') Manchester
+            .tab-content
+                #chrome.tab-pane.active(role='tabpanel')
+                    .container-fluid
+                        .row
+                            .col-md-7
+                                h3 Bayern Munich
+                                |             The most successful football club in Germany. One of the most competent team in the UCL this year
+                            .col-md-5
+                                img(src='images/bayernlogo.png')
+                #opera.tab-pane(role='tabpanel')
+                    .container-fluid
+                        .row
+                            .col-md-5
+                                img(src='images/bacelogo.jpg')
+                            .col-md-7
+                                h3 Barcelona FC
+                                |             One of the most successful club in Laliga. Messi has been playing for Barcelona for more than ten years
+                #ie.tab-pane(role='tabpanel')
+                    .container-fluid
+                        .row
+                            .col-md-7
+                                h3 Manchester United
+                                |             This club has 500 millions fans, which is way more than the population of Britain.
+                            .col-md-5
+                                img(src='images/manchesterlogo.png')
+        // Copy Right
+        .container
+            | ©Fortitudedevelopment
+        // modal register
+        #myModal2.modal.fade(tabindex='-1', role='dialog')
+            .modal-dialog(role='document')
+                .modal-content
+                    .modal-header
+                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                            span(aria-hidden='true') ×
+                        h4.modal-title
+                    .modal-body
+                        form
+                            .form-group
+                                label(for='exampleInputEmail1') Email address
+                                input#exampleInputEmail2.form-control(type='email', aria-describedby='emailHelp', placeholder='Enter email')
+                                small#emailHelp2.form-text.text-muted We'll never share your email with anyone else.
+                            .form-group
+                                label(for='exampleInputPassword1') Password
+                                input#exampleInputPassword2.form-control(type='password', placeholder='Password')
+                            p
+                                | Alredy Registered?
+                                a(href='javascript:;', data-dismiss='modal', data-target='#myModal', data-toggle='modal') Login
+                            button.btn.btn-primary(type='submit', onclick='register()') Submit
+        // modal login
+        #myModal.modal.fade(tabindex='-1', role='dialog')
+            .modal-dialog(role='document')
+                .modal-content
+                    .modal-header
+                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                            span(aria-hidden='true') ×
+                        h4.modal-title
+                    .modal-body
+                        form
+                            .form-group
+                                label(for='exampleInputEmail1') Email address
+                                input#exampleInputEmail1.form-control(type='email', aria-describedby='emailHelp', placeholder='Enter email')
+                                small#emailHelp.form-text.text-muted We'll never share your email with anyone else.
+                            .form-group
+                                label(for='exampleInputPassword1') Password
+                                input#exampleInputPassword1.form-control(type='password', placeholder='Password')
+                            .form-group.form-check
+                                input#exampleCheck1.form-check-input(type='checkbox')
+                                label.form-check-label(for='exampleCheck1') Remember Me
+                            p
+                                | Not Registered Yet?
+                                a(href='javascript:;', data-dismiss='modal', data-target='#myModal2', data-toggle='modal') Create
+                            button.btn.btn-primary(type='submit', onclick='validate()') Submit
+                    .modal-footer
+                        button.btn.btn-default(type='button', data-dismiss='modal') Close
+        script(src='js/jquery.min.js')
+        script(src='js/bootstrap.min.js')
+        script(type='text/javascript').
+          $(function(){
+            $('.carousel').carousel({
+              interval: 2000,
+              pause:null,
+              wrap:false
+            })
+            $('#test').click(function(){
+              $('.carousel').carousel('cycle');
+            })
+            $('#test2').click(function(){
+              $('.carousel').carousel('pause')
+            })
+            $("#damu-nav > li > a").click(function(e){
+              var href = $(this).attr("href");
+              console.log("#damu-list > li > a[href="+(href)+"]");
+              $("#damu-list > li > a[href="+(href)+"]").tab('show');
+              $(document).scrollTop($("#damu-tab").offset().top);
+              e.preventDefault();
+            })
+          })

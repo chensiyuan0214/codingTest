@@ -1,5 +1,4 @@
 'use strict'
-
 //将mongoose.Schema 赋值给一个变量
 var Schema = mongoose.Schema;
 

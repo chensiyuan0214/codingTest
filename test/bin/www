@@ -5,6 +5,11 @@
  */
 
 var app = require('../app');
+
+/*
+The very first thing this does is require() the "real" application entry point
+(app.js, in the project root) that sets up and returns the express() application object.
+ */
 var debug = require('debug')('test:server');
 var http = require('http');
 
